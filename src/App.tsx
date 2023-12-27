@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Input from 'components/Input';
+
+export default function App() {
+	const [isChecked, setIsChecked] = useState(false);
+
+	const handleOnChange = (value: boolean) => setIsChecked(value);
+
+	return (
+		<div>
+			{Array.from({ length: 10 }).map((_, index) => (
+				<Input
+					key={index}
+					index={index}
+					title={'Comments'}
+					description={'Get notified when someones posts a comment on a posting.'}
+					isChecked={isChecked}
+					onChange={handleOnChange}
+				/>
+			))}
+		</div>
+	);
 }
-
-export default App;
